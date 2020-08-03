@@ -1,0 +1,39 @@
+// 로또번호 자동생성
+const setting = {
+    name : "LOTTO",
+    count : 6,
+    bonus : true,
+    min   : 1,
+    max   : 45
+}
+
+function getRandomNumber( min, max ) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function makeLottoNumber( { count, bonus, min, max } ) {
+    let numberSet = new Set(),
+        bo_num;
+
+    while( numberSet.size < count ) {
+        numberSet.add( getRandomNumber(min, max) );
+    }
+
+    if( bonus ) {
+        while( true ) {
+            bo_num = getRandomNumber(min, max);
+            if( !numberSet.has( bo_num ) ) {
+                break;
+            }
+        }
+
+        return [...numberSet, bo_num];
+    }
+
+    return [...numberSet];
+}
+
+const result =  makeLottoNumber( setting );
+result.sort( (a,b) => {return a - b} ).forEach( function( v ) {
+   console.log(v);
+});
