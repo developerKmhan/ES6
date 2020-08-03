@@ -1,4 +1,4 @@
-// 로또번호 자동생성
+// 로또번호 자동생성 (출처 : https://www.inflearn.com/questions/34433)
 const setting = {
     name : "LOTTO",
     count : 6,
